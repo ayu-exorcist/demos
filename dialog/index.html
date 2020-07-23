@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Screen</title>
+    <link rel="stylesheet"
+        href="https://ayuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu.github.io/dialog-polyfill/dist/dialog-polyfill.css">
+    <link rel="stylesheet" href="assets/dialog.css">
+</head>
+
+<body>
+    <dialog id="iframeDialog" class="fixed">
+        <div class="header">
+            <span class="title">Split Screen</span>
+            <button class="headerbtn button-close" type="button" aria-label="Close"><i class="btnclose">X</i></button>
+        </div>
+
+        <div class="body">
+            <!-- method="dialog": 如果表单在 <dialog> 元素中，提交时关闭对话框 -->
+            <form id="dialog-form" method="dialog" autocomplete="on" target="_self">
+                <fieldset>
+                    <legend>URL</legend>
+                    <div class="fs-body">
+                        <div class="url">
+                            <label for="tab-one">Tab One</label>
+                            <div class="input-wrapper">
+                                <input id="tab-one" name="tab-one" type="url" placeholder="https://example.com"
+                                    pattern="^(?:(?:(?:https?|ftp|file):)?\/\/).*" list="defaultURLs">
+                            </div>
+                        </div>
+                        <div class="url">
+                            <label for="tab-two">Tab Two</label>
+                            <div class="input-wrapper">
+                                <input id="tab-two" name="tab-two" type="url" placeholder="https://example.com"
+                                    pattern="^(?:(?:(?:https?|ftp|file):)?\/\/).*" list="defaultURLs">
+                            </div>
+                        </div>
+                    </div>
+                    <datalist id="defaultURLs">
+                        <option value="https://ayuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu.github.io/demos/dialog/index.html">Split Screen</option>
+                        <option value="https://cn.bing.com">Bing</option>
+                        <option value="https://www.baidu.com">Baidu</option>
+                        <option value="https://fanyi.baidu.com">Baidu Fanyi</option>
+                    </datalist>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Direction</legend>
+                    <div class="fs-body">
+                        <div class="direction">
+                            <label for="horizontal">horizontal</label>
+                            <div class="input-wrapper">
+                                <input id="horizontal" name="hv" type="radio" value="horizontal" checked>
+                            </div>
+                        </div>
+                        <div class="direction">
+                            <label for="vertical">vertical</label>
+                            <div class="input-wrapper">
+                                <input id="vertical" name="hv" type="radio" value="vertical">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="footer">
+            <button form="dialog-form" class="button button-cancel" type="button"
+                value="cancel"><span>Cancel</span></button>
+            <button form="dialog-form" class="button button-confirm" type="submit" value="confirm"
+                autofocus><span>Confirm</span></button>
+        </div>
+    </dialog>
+
+    <script src="https://ayuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu.github.io/dialog-polyfill/dist/dialog-polyfill.js"></script>
+    <script src="assets/dialog.js"></script>
+</body>
+
+</html>
