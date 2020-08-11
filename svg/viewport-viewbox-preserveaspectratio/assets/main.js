@@ -1,14 +1,14 @@
 import Shape, {
-    removeElementAttr as removeSvgAttr, 
-    setElementAttrs as setSVGAttrs, 
+    removeElementAttr as removeSvgAttr,
+    setElementAttrs as setSVGAttrs,
     showShape
 } from './shape.js';
 import {
-    AttrError
+    AttrError,
+    ValueError
 } from './error.js';
 
 let form = document.getElementsByTagName('form')[0];
-let svg = document.getElementById('svg');
 
 let vpWidth = document.getElementById('viewportWidth'),
     vpHeight = document.getElementById('viewportHeight');
@@ -53,15 +53,23 @@ function formEvent(e) {
             showShape(type.value, attr.value);
             break;
         case vpWidth: {
-            value ? setSVGAttrs({
-                width: value
-            }): removeSvgAttr('width');
+            try {
+                value ? setSVGAttrs({
+                    width: value
+                }) : removeSvgAttr('width');
+            } catch (e) {
+                throw ValueError('viewport width');
+            }
             break;
         }
         case vpHeight: {
-            value ? setSVGAttrs({
-                height: value
-            }): removeSvgAttr('height');
+            try {
+                value ? setSVGAttrs({
+                    height: value
+                }) : removeSvgAttr('height');
+            } catch (e) {
+                throw ValueError('viewport height');
+            }
             break;
         }
         case vbMinX:
@@ -71,10 +79,18 @@ function formEvent(e) {
             let vbArr = [vbMinX.value, vbMinY.value, vbWidth.value, vbHeight.value];
 
             let vb = vbArr.join(" ").trim();
+            // 该 flag 决定了是否移除 viewBox 属性
+            let flag = vbArr.every((item) => {
+                return item.trim();
+            });
 
-            vb ? setSVGAttrs({
-                viewBox: vb
-            }): removeSvgAttr('viewBox');
+            try {
+                (vb && flag) ? setSVGAttrs({
+                    viewBox: vb
+                }): removeSvgAttr('viewBox');
+            } catch (e) {
+                throw ValueError('viewBox');
+            }
             break;
         }
         case align:
@@ -90,9 +106,13 @@ function formEvent(e) {
 
             let par = parArr.join(' ').trim();
 
-            par ? setSVGAttrs({
-                preserveAspectRatio: par
-            }) : removeSvgAttr('preserveAspectRatio');
+            try {
+                par ? setSVGAttrs({
+                    preserveAspectRatio: par
+                }) : removeSvgAttr('preserveAspectRatio');
+            } catch (e) {
+                throw ValueError('preserveAspectRatio');
+            }
             break;
         }
         case type: {
@@ -107,7 +127,7 @@ function formEvent(e) {
         case attr: {
             try {
                 e.type === 'change' && attr.value && showShape(type.value, attr.value);
-            } catch(e) {
+            } catch (e) {
                 throw new AttrError(type.value);
             }
             break;
@@ -138,7 +158,7 @@ function formEvent(e) {
         width: vpWidth.value = '100%',
         height: vpHeight.value = '400',
         viewBox: vb,
-        preserveAspectRatio: par,
+        // preserveAspectRatio: par,  // par 初始值为 `''`, 故注释
     }
 
     attr.dispatchEvent(new Event('input', {
