@@ -1,0 +1,89 @@
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+}
+
+body {
+    margin: 0 1.2rem;
+    font-size: 1.2rem;
+}
+
+header {
+    margin: 1.2rem 0;
+}
+
+form {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+fieldset {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset:nth-child(2) {
+    border-left: 0;
+    border-right: 0;
+}
+
+fieldset:nth-last-child(2) {
+    border-right: 0;
+}
+
+fieldset legend {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+fieldset div {
+    margin: 1.2rem 0;
+    font-size: 0;
+}
+
+fieldset label,
+fieldset input,
+fieldset select,
+fieldset textarea {
+    width: 40%;
+    height: 2.4rem;
+    border-radius: .5rem;
+    outline: none;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    vertical-align: middle;
+    background-color: #fff;
+}
+
+fieldset label {
+    display: inline-block;
+    margin: 0 2%;
+    text-align: right;
+}
+
+fieldset textarea {
+    overflow: hidden;
+    width: 40%;
+    resize: none;
+}
+
+fieldset input, 
+fieldset textarea {
+    padding: 0 .2rem;
+    border-width: .1rem;
+    text-align: left;
+}
+
+#svg {
+    transition: all 1s linear;
+    border: .2rem solid #f4606c;
+}

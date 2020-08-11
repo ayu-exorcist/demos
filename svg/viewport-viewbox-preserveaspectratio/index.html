@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>viewport & viewBox & preserveAspectRatio</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <header>
+        <form>
+            <fieldset id="viewport" title="SVG 元素建立的 viewport">
+                <legend>viewport</legend>
+                <div>
+                    <label for="viewportWidth">width: </label>
+                    <input id="viewportWidth" type="text">
+                </div>
+                <div>
+                    <label for="viewportHeight">height: </label>
+                    <input id="viewportHeight" type="text">
+                </div>
+            </fieldset>
+            <fieldset id="viewBox" title="viewBox 在用户空间指定 postion 和 dimension, 也即指定用户空间中的矩形. 该矩形映射到关联的 SVG viewport">
+                <legend>viewBox</legend>
+                <div>
+                    <label for="viewBoxMinX">min-x: </label>
+                    <input id="viewBoxMinX" type="text">
+                </div>
+                <div>
+                    <label for="viewBoxMinY">min-y: </label>
+                    <input id="viewBoxMinY" type="text">
+                </div>
+                <div>
+                    <label for="viewBoxWidth">width: </label>
+                    <input id="viewBoxWidth" type="text">
+                </div>
+                <div>
+                    <label for="viewBoxHeight">height: </label>
+                    <input id="viewBoxHeight" type="text">
+                </div>
+            </fieldset>
+            <fieldset id="preserveAspectRatio" title="preserveAspectRatio 属性表示是否强制进行统一缩放. 对于支持该属性的所有元素, 如果没有提供属性 viewBox, 则忽略属性 preserveAspectRatio
+                (&lt;image&gt; 元素除外,
+                见 SVG Shape - type - &lt;image&gt; 的 title)">
+                <legend>preserveAspectRatio</legend>
+                <div id="alignmentValue">
+                    <label for="align">&lt;align&gt;: </label>
+                    <select id="align">
+                        <option value="" selected>请选择</option>
+                        <optgroup label="none">
+                            <option value="none">none</option>
+                        </optgroup>
+                        <optgroup label="xMin">
+                            <option value="xMinYMin">xMinYMin</option>
+                            <option value="xMinYMid">xMinYMid</option>
+                            <option value="xMinYMax">xMinYMax</option>
+                        </optgroup>
+                        <optgroup label="xMid">
+                            <option value="xMidYMin">xMidYMin</option>
+                            <option value="xMidYMid">xMidYMid</option>
+                            <option value="xMidYMax">xMidYMax</option>
+                        </optgroup>
+                        <optgroup label="xMax">
+                            <option value="xMaxYMin">xMaxYMin</option>
+                            <option value="xMaxYMid">xMaxYMid</option>
+                            <option value="xMaxYMax">xMaxYMax</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div id="meetOrSliceReference" style="visibility: hidden;">
+                    <label for="meetOrSlice">&lt;meetOrSlice&gt;: </label>
+                    <select id="meetOrSlice">
+                        <option value="meet">meet</option>
+                        <option value="slice">slice</option>
+                    </select>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>SVG Shape</legend>
+                <div>
+                    <label for="type">type: </label>
+                    <select id="type">
+                        <option value="rect">&lt;rect&gt;</option>
+                        <option value="circle">&lt;circle&gt;</option>
+                        <option value="ellipse">&lt;ellipse&gt;</option>
+                        <option value="line">&lt;line&gt;</option>
+                        <option value="polyline">&lt;polyline&gt;</option>
+                        <option value="polygon">&lt;polygon&gt;</option>
+                        <option value="image"
+                            title="对于&lt;image&gt;, preserveAspectRatio 指示引用的图像应该如何与参考矩形进行匹配，以及是否应该相对于当前用户坐标系保留参考图像的长宽比">
+                            &lt;image&gt;
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="attr" title="使用 `,` 或换行分隔">attribute: </label>
+                    <textarea id="attr" title="使用 `,` 或换行分隔"></textarea>
+                </div>
+            </fieldset>
+        </form>
+    </header>
+    <main>
+        <svg id="svg" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+    </main>
+    <script type="module" src="assets/main.js"></script>
+</body>
+
+</html>
