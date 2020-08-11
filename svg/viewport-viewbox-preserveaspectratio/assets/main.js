@@ -58,7 +58,7 @@ function formEvent(e) {
                     width: value
                 }) : removeSvgAttr('width');
             } catch (e) {
-                throw ValueError('viewport width');
+                throw new ValueError('viewport width');
             }
             break;
         }
@@ -68,7 +68,7 @@ function formEvent(e) {
                     height: value
                 }) : removeSvgAttr('height');
             } catch (e) {
-                throw ValueError('viewport height');
+                throw new ValueError('viewport height');
             }
             break;
         }
@@ -89,7 +89,7 @@ function formEvent(e) {
                     viewBox: vb
                 }): removeSvgAttr('viewBox');
             } catch (e) {
-                throw ValueError('viewBox');
+                throw new ValueError('viewBox');
             }
             break;
         }
@@ -111,7 +111,7 @@ function formEvent(e) {
                     preserveAspectRatio: par
                 }) : removeSvgAttr('preserveAspectRatio');
             } catch (e) {
-                throw ValueError('preserveAspectRatio');
+                throw new ValueError('preserveAspectRatio');
             }
             break;
         }
