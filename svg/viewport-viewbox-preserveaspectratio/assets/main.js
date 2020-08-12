@@ -48,9 +48,7 @@ function formEvent(e) {
     let value = el.value;
     switch (el) {
         default:
-            // 设置 svg 元素属性
-            setSVGAttrs(svgAttr);
-            showShape(type.value, attr.value);
+            console.log(`${Object.getPrototypeOf(el).constructor.name} is not supported!`);
             break;
         case vpWidth: {
             try {
@@ -119,10 +117,8 @@ function formEvent(e) {
             // 变更类型时清空属性框中的值
             attr.value = '';
 
-            attr.dispatchEvent(new Event('input', {
-                bubbles: true,
-                cancelable: true
-            })); // 触发 textarea 缩放
+            // 手动触发事件
+            attr.dispatchEvent(new Event('input')); // 触发 textarea 缩放
         }
         case attr: {
             try {
@@ -136,37 +132,12 @@ function formEvent(e) {
 }
 
 (function init() {
-    // 设置 vb 和 vb 相关值
-    let vbMinXValue = vbMinX.value = 0,
-        vbMinYValue = vbMinY.value = 0,
-        vbWidthValue = vbWidth.value = 100,
-        vbHeightValue = vbHeight.value = 100,
-        vbArr = [vbMinXValue, vbMinYValue, vbWidthValue, vbHeightValue],
-        vb = vbArr.join(' ').trim();
-    // 设置 par 和 par 相关值
-    let alignValue = align.value,
-        meetOrSliceValue = meetOrSlice.value = (!alignValue || alignValue === 'none') ? '' : (!meetOrSlice.value ? 'meet' : meetOrSlice.value),
-        parArr = [alignValue, meetOrSliceValue],
-        par = parArr.join(' ').trim();
+    // 初始化 type 和 attribute 值
+    type.value = 'rect';
+    attr.value = 'x="0", y="0", width="50%", height="50%"';
+    // 显示默认的矩形
+    showShape(type.value, attr.value);
 
-    // 全局属性声明
-    // 设置 type 和 attribute 值
-    window.typeValue = type.value = !type.value ? 'rect' : type.value;
-    window.attrValue = attr.value = !attr.value ? 'x="0", y="0", width="50%", height="50%"' : attr.value;
-    // 初始化 svg 属性值并设置 width 和 height 值
-    window.svgAttr = {
-        width: vpWidth.value = '100%',
-        height: vpHeight.value = '400',
-        viewBox: vb,
-        // preserveAspectRatio: par,  // par 初始值为 `''`, 故注释
-    }
-
-    attr.dispatchEvent(new Event('input', {
-        bubbles: true,
-        cancelable: true
-    })); // 触发 textarea 缩放
-    form.dispatchEvent(new Event('change', {
-        bubbles: true,
-        cancelable: true
-    })); // 触发至 default 分支初始化
+    // 手动触发事件
+    attr.dispatchEvent(new Event('input')); // 触发 textarea 缩放
 })();
