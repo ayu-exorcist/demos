@@ -64,7 +64,6 @@ stroke-opacity: .5;\
 
     setAttrs(attrs = Shape.initAttrs) {
         for (let k in attrs) {
-            console.log(1, k);
             this.el.setAttribute(k, attrs[k]);
         }
     }
