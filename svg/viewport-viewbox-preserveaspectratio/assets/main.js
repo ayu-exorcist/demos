@@ -1,4 +1,4 @@
-import Shape, {
+import {
     removeElementAttr as removeSvgAttr,
     setElementAttrs as setSVGAttrs,
     showShape
@@ -134,7 +134,12 @@ function formEvent(e) {
 (function init() {
     // 初始化 type 和 attribute 值
     type.value = 'rect';
-    attr.value = 'x="0", y="0", width="50%", height="50%"';
+    attr.value = `\
+x="0"
+y="0"
+width="50%"
+height="50%"\
+`;
     // 显示默认的矩形
     showShape(type.value, attr.value);
 

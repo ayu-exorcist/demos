@@ -1,15 +1,14 @@
 export default class Shape {
     static svg = document.getElementById('svg');
     static initAttrs = {
-        style: `
-            fill: #ecad9e; 
-            stroke: #beedc7; 
-            stroke-width: 1rem; 
-            rx: 0; ry: 0; 
-            opacity: 1; 
-            fill-opacity: 1; 
-            stroke-opacity: .5; 
-        `
+        style: `\
+fill: #ecad9e;
+stroke: #beedc7;
+stroke-width: 1rem;
+opacity: 1;
+fill-opacity: 1;
+stroke-opacity: .5;\
+`
     };
 
     constructor(type, attr) {
@@ -35,8 +34,8 @@ export default class Shape {
 
     set attr(v) {
         let attr = {};
-
-        v.split(/,|\n+/)
+        console.debug(`Raw attributes: ${v}`);
+        v.split(/\n+/)
             .filter((item) => {
                 return item.trim();
             })
@@ -46,8 +45,8 @@ export default class Shape {
                 attr[itemArr[0].trim()] = JSON.parse(itemArr[1].trim().replace(/'/g, '"'));
             });
         this._attr = attr;
-        
-        console.debug(this.attr.valueOf());
+
+        console.debug(this.attr);
     }
 
     get attr() {
@@ -65,6 +64,7 @@ export default class Shape {
 
     setAttrs(attrs = Shape.initAttrs) {
         for (let k in attrs) {
+            console.log(1, k);
             this.el.setAttribute(k, attrs[k]);
         }
     }
